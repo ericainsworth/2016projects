@@ -12,7 +12,7 @@ var songs = [
   },
 
   {
-    song: "Get Shaky"
+    song: "Get Shaky",
     artist: "The Ian Carey Project",
     url: "https://www.youtube.com/watch?v=UOgBFL6bJTY",
   },
@@ -30,19 +30,13 @@ var songs = [
   },
 ]
 
-function search(videos, world) {
-  var matches = []
-}
-for (i = 0; i < songs.length; i++) {
-  if (videos === " ") continue;
-  if (world [i].name.indexOf(videos) != -1) {
-    matches.push(world[i]);
-  }
-}
-
-return matches;
-}
-
-function showVideos(tracks, area) {
-  var hits = document.getElementById("results");
-}
+var search = document.getElementById("button");
+ search.addEventListener("click", function (event) {
+   event.preventDefault();
+   var keyword = document.getElementById('info');
+   for (var i = 0; i < songs.length; i++) {
+     if (songs[i].song === keyword.value) {
+       console.log(songs[i])
+     }
+   }
+ })
