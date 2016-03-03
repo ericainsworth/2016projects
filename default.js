@@ -38,5 +38,20 @@ var search = document.getElementById("button");
      if (songs[i].song === keyword.value) {
        console.log(songs[i])
      }
+     else {
+       return "No Results";
+     }
    }
  })
+
+var media1 = document.createElment("div");
+var media2 = document.createElment("div");
+var anchor = document.createElment("a");
+var image1 = document.createElment("img");
+var media3 = document.createElment("div");
+var mediaInfo = document.createElment("p");
+var tagLine = document.createElment("p");
+
+var match = function() {
+
+}
