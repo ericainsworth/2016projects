@@ -36,22 +36,37 @@ var search = document.getElementById("button");
    var keyword = document.getElementById('info');
    for (var i = 0; i < songs.length; i++) {
      if (songs[i].song === keyword.value) {
-       console.log(songs[i])
-     }
-     else {
-       return "No Results";
+       console.log(songs[i]);
      }
    }
  })
 
-var media1 = document.createElment("div");
-var media2 = document.createElment("div");
-var anchor = document.createElment("a");
-var image1 = document.createElment("img");
-var media3 = document.createElment("div");
-var mediaInfo = document.createElment("p");
-var tagLine = document.createElment("p");
+var matches = function(hits) {
+var media = document.createElement("div");
+media.setAttribute("class", "media");
+var mediaLeft= document.createElement("div");
+mediaLeft.setAttribute("class", "media-left");
+var mediaLink = document.createElement("a");
+mediaLink.setAttribute("href", "#");
+var mediaImage = document.createElement("img");
+mediaImage.setAttribute("src", "class", "media-object");
+var mediaBody = document.createElement("div");
+mediaBody.setAttribute("class", "media-body");
+var mediaHeading = document.createElement("h3");
+mediaHeading.setAttribute("class", "media-heading");
+var userInfo = document.createElement("p");
+var uploadText = document.createElement("p");
 
-var match = function() {
+mediaHeading.appendChild(uploadText);
+mediaHeading.appendChild(userInfo);
+mediaBody.appendChild(mediaHeading);
+mediaLeft.appendChild(mediaBody);
+mediaLeft.appendChild(mediaImage);
+mediaLeft.appendChild(mediaLink);
+media.appendChild(mediaLeft);
+
+
+
+
 
 }
