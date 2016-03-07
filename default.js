@@ -2,7 +2,7 @@ var songs = [
   {
     song: "Chill Mix",
     artist: "Deadmau5",
-    url: "videos/deadmau5.mp4",
+    url: "https://www.youtube.com/embed/F0YYoo6oFoU",
     stats: "1 year ago | 2,560,233 views",
     loader: "Here is a good mix of Deadmau5 songs to listen to while\
       at work.",
@@ -69,21 +69,34 @@ var matches = function(hits) {
   //mediaLink.setAttribute("href", hits.url);
   //mediaLeft.appendChild(mediaLink);
 
-  var mediaImage = document.createElement("img");
-  mediaImage.setAttribute("class", "media-object");
-  mediaImage.setAttribute("src", hits.image);
-  mediaLeft.appendChild(mediaImage);
+  //var mediaImage = document.createElement("img");
+  //mediaImage.setAttribute("class", "media-object");
+  //mediaImage.setAttribute("src", hits.image);
+  //mediaLeft.appendChild(mediaImage);
 
   var mediaBody = document.createElement("div");
   mediaBody.setAttribute("class", "media-body");
   mediaLeft.appendChild(mediaBody);
   media.appendChild(mediaBody);
 
-  var play = document.createElement("button");
-  var playText = document.createTextNode("Play Video");
-  play.setAttribute("class", "btn btn-default");
-  play.appendChild(playText);
-  mediaBody.appendChild(play);
+  var embed = document.createElement("div");
+  embed.setAttribute("class", "embed-responsive embed-responsive-16by9");
+  mediaBody.appendChild(embed);
+
+  var frame = document.createElement("iframe");
+  embed.appendChild(frame);
+  frame.setAttribute("class", "embed-responsive-item");
+  frame.setAttribute("src", hits.url);
+  frame.setAttribute("width", "560");
+  frame.setAttribute("height", "315");
+  mediaBody.appendChild(frame);
+
+
+  //var play = document.createElement("button");
+  //var playText = document.createTextNode("Play Video");
+  //play.setAttribute("class", "btn btn-default");
+  //play.appendChild(playText);
+  //mediaBody.appendChild(play);
 
   var mediaHeading = document.createElement("h3");
   var newText = document.createTextNode(hits.artist + " " + "|" + " " + hits.song);
@@ -109,13 +122,3 @@ var matches = function(hits) {
   var results = document.getElementById("results");
   results.appendChild(media);
 }
-
-
-//var playing = document.getElementsByTagName("button");
-//playing.addEventListener("click", function (playOn) {
-//  var mediaPlayer = document.createElement("video");
-  //var track = document.createElement("source")
-//  mediaPlayer.setAttribute("class", "btn btn-default");
-//  mediaPlayer.setAttribute("src", "songs.url");
-//  mediaBody.appendChild("mediaPlayer");
-//}
