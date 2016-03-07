@@ -65,14 +65,6 @@ var matches = function(hits) {
   mediaLeft.setAttribute("class", "media-left");
   media.appendChild(mediaLeft);
 
-  //var mediaLink = document.createElement("a");
-  //mediaLink.setAttribute("href", hits.url);
-  //mediaLeft.appendChild(mediaLink);
-
-  //var mediaImage = document.createElement("img");
-  //mediaImage.setAttribute("class", "media-object");
-  //mediaImage.setAttribute("src", hits.image);
-  //mediaLeft.appendChild(mediaImage);
 
   var mediaBody = document.createElement("div");
   mediaBody.setAttribute("class", "media-body");
@@ -89,9 +81,6 @@ var matches = function(hits) {
   frame.setAttribute("src", hits.url);
   frame.setAttribute("width", "560");
   frame.setAttribute("height", "315");
-
-
-
 
   var mediaHeading = document.createElement("h3");
   var newText = document.createTextNode(hits.artist + " " + "|" + " " + hits.song);
@@ -114,7 +103,24 @@ var matches = function(hits) {
     emptyPage.removeChild(emptyPage.firstChild);
   }
 
+  var likeBar = document.createElement("div");
+  likeBar.setAttribute("class", "watch-action-buttons clearfix");
+  mediaBody.appendChild(likeBar);
 
+  var divActions = document.createElement("div");
+  divActions.setAttribute("class", "watch8-sentiment-actions");
+  likeBar.appendChild(divActions);
+
+  var likeSpan = document.createElement("span");
+  likeSpan.setAttribute("class", "like-button-render actionable");
+  likeSpan.setAttribute("data-button-toggle-group", "optional");
+  likeSpan.setAttribute("data-logged-in", "1");
+  likeBar.appendChild(likeSpan);
+
+  var spanButton = document.createElement("span");
+  likeSpan.appendChild(spanButton);
+
+  
 
   var results = document.getElementById("results");
   results.appendChild(media);
