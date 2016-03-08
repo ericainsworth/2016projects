@@ -69,14 +69,14 @@ var songs = [
 ]
 
 var search = document.getElementById("button");
- search.addEventListener("click", function () {
-   var keyword = document.getElementById('info');
-   for (var i = 0; i < songs.length; i++) {
-     if (songs[i].song === keyword.value) {
-       matches(songs[i]);
-     }
-   }
- })
+search.addEventListener("click", function () {
+  var keyword = document.getElementById('info');
+  for (var i = 0; i < songs.length; i++) {
+    if (songs[i].song === keyword.value) {
+      matches(songs[i]);
+    }
+  }
+})
 
 var matches = function(hits) {
   var media = document.createElement("div");
@@ -145,7 +145,7 @@ var matches = function(hits) {
   var thumbUp = document.createElement("button");
   thumbUp.setAttribute("type", "button");
   thumbUp.setAttribute("class", "btn btn-default");
-  thumbUp.setAttribute("aria-label", "Right-Align");
+  //thumbUp.setAttribute("aria-label", "Right-Align");
   likeSpan.appendChild(thumbUp);
 
   var thumb = document.createElement("span");
@@ -175,20 +175,74 @@ var matches = function(hits) {
   comSect.setAttribute("id", "comment-section-renderer");
   comPanel.appendChild(comSect);
 
-  var comHeader = document.createElement("h3");
+  var comHeader = document.createElement("h4");
   var headerNode = document.createTextNode("COMMENTS - ");
   comHeader.appendChild(headerNode);
   comHeader.setAttribute("class", "comment-section-header-renderer");
   comHeader.setAttribute("tabindex", "0");
   comSect.appendChild(comHeader);
 
-  var commentBox = document.createElement("div");
+  var commentBox = document.createElement("textarea");
   var commentBoxText = document.createTextNode("Add a public comment...");
   commentBox.appendChild(commentBoxText);
-  commentBox.setAttribute("class", "comment-simplebox-renderer-collapsed-content");
+  commentBox.setAttribute("class", "form-control");
+  commentBox.setAttribute("rows", "3");
   comSect.appendChild(commentBox);
 
+  var submitBox = document.createElement("div");
+  submitBox.setAttribute("class", "comment-simplebox-buttons");
+  comSect.appendChild(submitBox);
+
+  var sendPost = document.createElement("button");
+  var sendPostText = document.createTextNode("Post")
+  sendPost.appendChild(sendPostText);
+  sendPost.setAttribute("data-id", hits.id)
+  sendPost.setAttribute("type", "button");
+  sendPost.setAttribute("class", "btn btn-success");
+  sendPost.setAttribute("id", "postbutton");
+  submitBox.appendChild(sendPost);
+
+  var comdiv = document.createElement("div");
+  comdiv.setAttribute("id", "commentdiv");
+  submitBox.appendChild(comdiv);
+
+  var pastComments = document.createElement("input");
+  pastComments.setAttribute("class", "form-control");
+  pastComments.setAttribute("type", "text");
+  pastComments.setAttribute("placeholder", "Top Comments");
+  pastComments.setAttribute("readonly", "true");
+  pastComments.setAttribute("id", "thepost")
+  comdiv.appendChild(pastComments);
 
   var results = document.getElementById("results");
   results.appendChild(media);
 }
+
+var postCom = document.getElementById("postbutton");
+document.body.addEventListener("click", function (theEvent) {
+  var id = theEvent.target.getAttribute("data-id");
+  var postInfo = document.getElementById("commentBox");
+  console.log(songs.length);
+  for (var i = 0; i < songs.length; i++) {
+    console.log(songs[i].id, id);
+
+    if (songs[i].id == id) {
+
+      songs[i].comments.push(postInfo.value);
+
+      console.log(songs[i]);
+    }
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+//console.log(theEvent.target.getAttribute("data-id"));
