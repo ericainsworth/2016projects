@@ -1,48 +1,70 @@
 var songs = [
   {
-    song: "Chill Mix",
+    id: 1,
+    song: "Ghosts n Stuff",
     artist: "Deadmau5",
     url: "https://www.youtube.com/embed/GGtcJCzB9cU",
     stats: "1 year ago | 2,560,233 views",
-    loader: "Here is a good mix of Deadmau5 songs to listen to while\
-      at work.",
+    loader: "Here is a good mix of Deadmau5 songs to listen to while at work.",
     image: "https://i.ytimg.com/vi/4kepqYBMw-g/maxresdefault.jpg",
+    comments: [
+      {
+        name: "John",
+        review: "Grrreat Song!",
+      },
+      {
+        name: "Greg",
+        review: "Love Deadmau5, another hit",
+      },
+      {
+        name: "Jessica",
+        review: "Going to the concert Friday, so excited!",
+      },
+    ]
   },
 
   {
+    id: 2,
     song: "California",
     artist: "SNBRN",
     url: "https://www.youtube.com/embed/xMZbxqYJAN4",
     stats: "7 months ago | 760,533 views",
     loader: "SBRN feat. Kaleena Zanders - California availaable now!",
     image: "https://i1.sndcdn.com/artworks-000114490854-try609-t500x500.jpg",
+    comments: []
   },
 
   {
+    id: 3,
     song: "Get Shaky",
     artist: "The Ian Carey Project",
     url: "https://www.youtube.com/embed/UOgBFL6bJTY",
     stats: "6 years ago | 6,760,453 views",
     loader: "Subscribe, its easy! Top of the Aussie charts for 9 months",
     image: "http://images.junostatic.com/full/CS1314853-02A-BIG.jpg",
+    comments: []
   },
 
   {
+    id: 4,
     song: "San Francisco",
     artist: "Global Deejays",
     url: "https://www.youtube.com/embed/d2uE4P3P5sI",
     stats: "7 years ago | 3,560,246 views",
     loader: "DJGlobalDeejays",
     image: "https://i.ytimg.com/vi/BEXWErq4gCs/maxresdefault.jpg",
+    comments: []
   },
 
   {
+    id: 5,
     song: "When Love Takes Over",
     artist: "David Guetta",
     url: "https://www.youtube.com/embed/zudbz4hOcbc",
     stats: "6 years ago | 102,560,233 views",
     loader: "David Guetta feat Kelly Rowland",
     image: "https://upload.wikimedia.org/wikipedia/en/f/f5/When_Love_Takes_Over.jpg",
+    comments: []
   },
 ]
 
@@ -120,7 +142,52 @@ var matches = function(hits) {
   var spanButton = document.createElement("span");
   likeSpan.appendChild(spanButton);
 
-  
+  var thumbUp = document.createElement("button");
+  thumbUp.setAttribute("type", "button");
+  thumbUp.setAttribute("class", "btn btn-default");
+  thumbUp.setAttribute("aria-label", "Right-Align");
+  likeSpan.appendChild(thumbUp);
+
+  var thumb = document.createElement("span");
+  thumb.setAttribute("class", "glyphicon glyphicon-thumbs-up");
+  thumb.setAttribute("aria-hidden", "true");
+  thumbUp.appendChild(thumb);
+
+  var thumbBelow = document.createElement("button");
+  thumbBelow.setAttribute("type", "button");
+  thumbBelow.setAttribute("class", "btn btn-default");
+  thumbBelow.setAttribute("aria-label", "Right-Align");
+  likeSpan.appendChild(thumbBelow);
+
+  var thumbDown = document.createElement("span");
+  thumbDown.setAttribute("class", "glyphicon glyphicon-thumbs-down");
+  thumbDown.setAttribute("aria-hidden", "true");
+  thumbBelow.appendChild(thumbDown);
+
+  var comPanel = document.createElement("div");
+  comPanel.setAttribute("class", "branded-page-box yt-card scrolldetect");
+  comPanel.setAttribute("id", "watch-discussion");
+  comPanel.setAttribute("data-scrolldetect-callback", "comments-delay-load");
+  likeSpan.appendChild(comPanel);
+
+  var comSect = document.createElement("div");
+  comSect.setAttribute("class", "comment-section-renderer");
+  comSect.setAttribute("id", "comment-section-renderer");
+  comPanel.appendChild(comSect);
+
+  var comHeader = document.createElement("h3");
+  var headerNode = document.createTextNode("COMMENTS - ");
+  comHeader.appendChild(headerNode);
+  comHeader.setAttribute("class", "comment-section-header-renderer");
+  comHeader.setAttribute("tabindex", "0");
+  comSect.appendChild(comHeader);
+
+  var commentBox = document.createElement("div");
+  var commentBoxText = document.createTextNode("Add a public comment...");
+  commentBox.appendChild(commentBoxText);
+  commentBox.setAttribute("class", "comment-simplebox-renderer-collapsed-content");
+  comSect.appendChild(commentBox);
+
 
   var results = document.getElementById("results");
   results.appendChild(media);
