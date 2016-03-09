@@ -226,7 +226,7 @@ document.body.addEventListener("click", function (theEvent) {
     for (var i = 0; i < songs.length; i++) {
       if (songs[i].id == id) {
         songs[i].comments.push(commentObject);
-        displayComments("thepost",songs[i].comments);
+        displayComments("commentdiv",songs[i].comments);
       }
     }
   }
@@ -238,23 +238,15 @@ function displayComments (location, comments) {
   var box = document.getElementById(location);
   var uList = document.createElement("ul");
   uList.setAttribute("class", "list-group");
-  var li1 = document.createElement("li");
-  li1.setAttribute("class", "list-group-item");
-  uList.appendChild(li1);
-  var li2 = document.createElement("li");
-  li2.setAttribute("class", "list-group-item");
-  uList.appendChild(li2);
-  var li3 = document.createElement("li");
-  li3.setAttribute("class", "list-group-item");
-  uList.appendChild(li3);
-  var li4 = document.createElement("li");
-  li4.setAttribute("class", "list-group-item");
-  uList.appendChild(li4);
-  var li5 = document.createElement("li");
-  li5.setAttribute("class", "list-group-item");
-  uList.appendChild(li5);
+  var com1 = document.getElementById("thepost");
+  thepost.appendChild(uList);
 
   for(var i =0; i < comments.length; i++){
-    console.log(comments[i]);
+    var liGen = document.createElement("li");
+    liGen.setAttribute("class", "list-group");
+    var liGenText = document.createTextNode(comments[i].review);
+    liGen.appendChild(liGenText);
+    uList.appendChild(liGen);
   }
+   box.appendChild(uList);
 }
