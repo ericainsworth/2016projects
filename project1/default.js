@@ -183,14 +183,15 @@ var matches = function(hits) {
   comSect.appendChild(comHeader);
 
   var commentBox = document.createElement("textarea");
-  var commentBoxText = document.createTextNode("Add a public comment...");
-  commentBox.appendChild(commentBoxText);
+  commentBox.setAttribute("placeholder", "Add a public comment...");
   commentBox.setAttribute("class", "form-control");
   commentBox.setAttribute("rows", "3");
+  commentBox.setAttribute("id", "actualcom");
   comSect.appendChild(commentBox);
 
   var submitBox = document.createElement("div");
-  submitBox.setAttribute("class", "comment-simplebox-buttons");
+  //submitBox.setAttribute("class", "comment-simplebox-buttons");
+  submitBox.setAttribute("class", "form-group");
   comSect.appendChild(submitBox);
 
   var sendPost = document.createElement("button");
@@ -221,28 +222,13 @@ var matches = function(hits) {
 var postCom = document.getElementById("postbutton");
 document.body.addEventListener("click", function (theEvent) {
   var id = theEvent.target.getAttribute("data-id");
-  var postInfo = document.getElementById("commentBox");
-  console.log(songs.length);
+  var postInfo = document.getElementById("actualcom");
+console.log(postInfo);
   for (var i = 0; i < songs.length; i++) {
-    console.log(songs[i].id, id);
-
+    console.log(songs[i].id,id);
     if (songs[i].id == id) {
-
       songs[i].comments.push(postInfo.value);
-
-      console.log(songs[i]);
+      console.log(songs[i].comments);
     }
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-//console.log(theEvent.target.getAttribute("data-id"));
