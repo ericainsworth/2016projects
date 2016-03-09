@@ -9,15 +9,12 @@ var songs = [
     image: "https://i.ytimg.com/vi/4kepqYBMw-g/maxresdefault.jpg",
     comments: [
       {
-        name: "John",
         review: "Grrreat Song!",
       },
       {
-        name: "Greg",
         review: "Love Deadmau5, another hit",
       },
       {
-        name: "Jessica",
         review: "Going to the concert Friday, so excited!",
       },
     ]
@@ -190,7 +187,6 @@ var matches = function(hits) {
   comSect.appendChild(commentBox);
 
   var submitBox = document.createElement("div");
-  //submitBox.setAttribute("class", "comment-simplebox-buttons");
   submitBox.setAttribute("class", "form-group");
   comSect.appendChild(submitBox);
 
@@ -219,16 +215,46 @@ var matches = function(hits) {
   results.appendChild(media);
 }
 
-var postCom = document.getElementById("postbutton");
 document.body.addEventListener("click", function (theEvent) {
   var id = theEvent.target.getAttribute("data-id");
-  var postInfo = document.getElementById("actualcom");
-console.log(postInfo);
-  for (var i = 0; i < songs.length; i++) {
-    console.log(songs[i].id,id);
-    if (songs[i].id == id) {
-      songs[i].comments.push(postInfo.value);
-      console.log(songs[i].comments);
+  if (theEvent.target.textContent == "Post") {
+    var postInfo = document.getElementById("actualcom");
+
+    var commentObject = {}
+    commentObject.review = postInfo.value;
+
+    for (var i = 0; i < songs.length; i++) {
+      if (songs[i].id == id) {
+        songs[i].comments.push(commentObject);
+        displayComments("thepost",songs[i].comments);
+      }
     }
   }
 });
+// selct the location to add the comments
+// create an element for each comment
+// append comment elements to the location
+function displayComments (location, comments) {
+  var box = document.getElementById(location);
+  var uList = document.createElement("ul");
+  uList.setAttribute("class", "list-group");
+  var li1 = document.createElement("li");
+  li1.setAttribute("class", "list-group-item");
+  uList.appendChild(li1);
+  var li2 = document.createElement("li");
+  li2.setAttribute("class", "list-group-item");
+  uList.appendChild(li2);
+  var li3 = document.createElement("li");
+  li3.setAttribute("class", "list-group-item");
+  uList.appendChild(li3);
+  var li4 = document.createElement("li");
+  li4.setAttribute("class", "list-group-item");
+  uList.appendChild(li4);
+  var li5 = document.createElement("li");
+  li5.setAttribute("class", "list-group-item");
+  uList.appendChild(li5);
+
+  for(var i =0; i < comments.length; i++){
+    console.log(comments[i]);
+  }
+}
