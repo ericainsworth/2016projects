@@ -188,6 +188,7 @@ var matches = function(hits) {
 
   var submitBox = document.createElement("div");
   submitBox.setAttribute("class", "form-group");
+  submitBox.setAttribute("id", "compad");
   comSect.appendChild(submitBox);
 
   var sendPost = document.createElement("button");
@@ -195,7 +196,7 @@ var matches = function(hits) {
   sendPost.appendChild(sendPostText);
   sendPost.setAttribute("data-id", hits.id)
   sendPost.setAttribute("type", "button");
-  sendPost.setAttribute("class", "btn btn-success");
+  sendPost.setAttribute("class", "btn btn-success btn-sm");
   sendPost.setAttribute("id", "postbutton");
   submitBox.appendChild(sendPost);
 
