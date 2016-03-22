@@ -201,16 +201,30 @@ var matches = function(hits) {
   submitBox.appendChild(sendPost);
 
   var comdiv = document.createElement("div");
+  comdiv.setAttribute("class", "panel panel-default");
   comdiv.setAttribute("id", "commentdiv");
   submitBox.appendChild(comdiv);
 
-  var pastComments = document.createElement("input");
-  pastComments.setAttribute("class", "form-control");
-  pastComments.setAttribute("type", "text");
-  pastComments.setAttribute("placeholder", "Top Comments");
-  pastComments.setAttribute("readonly", "true");
-  pastComments.setAttribute("id", "thepost")
+  var pastComments = document.createElement("div");
+  pastComments.setAttribute("class", "panel-heading");
   comdiv.appendChild(pastComments);
+
+  var comTitle = document.createElement("h3");
+  var comTitleNode = document.createTextNode("Top Comments");
+  comTitle.appendChild(comTitleNode);
+  comTitle.setAttribute("class", "panel-title");
+  pastComments.appendChild(comTitle);
+
+  var commentPanel = document.createElement("div");
+  var priorCom = document.createTextNode(hits.comments.review);
+  commentPanel.appendChild(priorCom);
+  commentPanel.setAttribute("class", "panel-body");
+  commentPanel.setAttribute("placeholder", "Top Comments");
+  commentPanel.setAttribute("readonly", "true");
+  commentPanel.setAttribute("id", "thepost")
+  pastComments.appendChild(commentPanel);
+
+
 
   var results = document.getElementById("results");
   results.appendChild(media);
@@ -219,6 +233,12 @@ var matches = function(hits) {
 document.body.addEventListener("click", function (theEvent) {
   var id = theEvent.target.getAttribute("data-id");
   if (theEvent.target.textContent == "Post") {
+
+    var emptyComments = document.getElementById("commentdiv");
+    while (emptyComments.firstChild) {
+      emptyComments.removeChild(emptyComments.firstChild);
+    }
+
     var postInfo = document.getElementById("actualcom");
 
     var commentObject = {}
@@ -237,6 +257,9 @@ document.body.addEventListener("click", function (theEvent) {
 // append comment elements to the location
 function displayComments (location, comments) {
   var box = document.getElementById(location);
+
+
+
   var uList = document.createElement("ul");
   uList.setAttribute("class", "list-group");
   var com1 = document.getElementById("thepost");
@@ -245,6 +268,7 @@ function displayComments (location, comments) {
   for(var i =0; i < comments.length; i++){
     var liGen = document.createElement("li");
     liGen.setAttribute("class", "list-group");
+    liGen.setAttribute("id", "emptycom")
     var liGenText = document.createTextNode(comments[i].review);
     liGen.appendChild(liGenText);
     uList.appendChild(liGen);
